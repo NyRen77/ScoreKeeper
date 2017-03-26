@@ -5,23 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import static com.example.android.scorekeeper.R.drawable.foul;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    int scoreA = 0;
-    int foulA = 0;
-    int redCardA = 0;
-    int scoreB = 0;
-    int foulB = 0;
-    int redCardB = 0;
     static final String SCORE_A = "team_a_score";
     static final String FOULS_A = "number_of_fouls_a";
     static final String RED_CARDS_A = "number_of_red_cards_a";
     static final String SCORE_B = "team_b_score";
     static final String FOULS_B = "number_of_fouls_b";
     static final String RED_CARDS_B = "number_of_red_cards_b";
+    int scoreA = 0;
+    int foulA = 0;
+    int redCardA = 0;
+    int scoreB = 0;
+    int foulB = 0;
+    int redCardB = 0;
     TextView TeamAScoreTV;
     TextView TeamAFoulsTV;
     TextView TeamARedCardsTV;
@@ -37,19 +35,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            TeamAScoreTV = (TextView) findViewById(R.id.team_a_score);
-            TeamAFoulsTV = (TextView) findViewById(R.id.number_of_fouls_a);
-            TeamARedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_a);
-            TeamBScoreTV = (TextView) findViewById(R.id.team_b_score);
-            TeamBFoulsTV = (TextView) findViewById(R.id.number_of_fouls_b);
-            TeamBRedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_b);
+        TeamAScoreTV = (TextView) findViewById(R.id.team_a_score);
+        TeamAFoulsTV = (TextView) findViewById(R.id.number_of_fouls_a);
+        TeamARedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_a);
+        TeamBScoreTV = (TextView) findViewById(R.id.team_b_score);
+        TeamBFoulsTV = (TextView) findViewById(R.id.number_of_fouls_b);
+        TeamBRedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_b);
     }
 
     /**
      * Functions to save and restore the current state
      */
     @Override
-    public void onSaveInstanceState (Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(SCORE_A, scoreA);
         savedInstanceState.putInt(FOULS_A, foulA);
         savedInstanceState.putInt(RED_CARDS_A, redCardA);
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRestoreInstanceState (Bundle savedInstanceState){
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         scoreA = savedInstanceState.getInt(SCORE_A);
         foulA = savedInstanceState.getInt(FOULS_A);
@@ -71,79 +69,69 @@ public class MainActivity extends AppCompatActivity {
         displayForTeamA(scoreA, foulA, redCardA);
         displayForTeamB(scoreB, foulB, redCardB);
     }
+
     /**
      * Displays the given score for Team A.
      */
     public void displayForTeamA(int score, int fouls, int cards) {
-//        TeamAScoreTV = (TextView) findViewById(R.id.team_a_score);
-//            TeamAFoulsTV = (TextView) findViewById(R.id.number_of_fouls_a);
-//            TeamARedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_a);
-       // TextView scoreView = (TextView) findViewById(R.id.team_a_score);
         TeamAScoreTV.setText(String.valueOf(score));
-        //scoreView = (TextView) findViewById(R.id.number_of_fouls_a);
         TeamAFoulsTV.setText(String.valueOf(fouls));
-       // scoreView = (TextView) findViewById(R.id.number_of_red_cards_a);
         TeamARedCardsTV.setText(String.valueOf(cards));
     }
 
-    public void goalTeamA(View view){
-        scoreA+=1;
-        displayForTeamA(scoreA,foulA,redCardA);
+    public void goalTeamA(View view) {
+        scoreA += 1;
+        displayForTeamA(scoreA, foulA, redCardA);
     }
 
-    public void foulTeamA(View view){
-        foulA+=1;
-        displayForTeamA(scoreA,foulA,redCardA);
+    public void foulTeamA(View view) {
+        foulA += 1;
+        displayForTeamA(scoreA, foulA, redCardA);
     }
 
-    public void redCardTeamA(View view){
-        if (redCardA < 5 ){
+    public void redCardTeamA(View view) {
+        if (redCardA < 5) {
             redCardA += 1;
             foulA += 1;
         }
-            displayForTeamA(scoreA, foulA, redCardA);
+        displayForTeamA(scoreA, foulA, redCardA);
 
     }
+
     /**
      * Displays the given score for Team B.
      * and other functions the handle the score changes with Team B
      */
     public void displayForTeamB(int score, int fouls, int cards) {
-//        TeamBScoreTV = (TextView) findViewById(R.id.team_b_score);
-//            TeamBFoulsTV = (TextView) findViewById(R.id.number_of_fouls_b);
-//            TeamBRedCardsTV = (TextView) findViewById(R.id.number_of_red_cards_b);
-        //TextView scoreView = (TextView) findViewById(R.id.team_b_score);
         TeamBScoreTV.setText(String.valueOf(score));
-        //scoreView = (TextView) findViewById(R.id.number_of_fouls_b);
         TeamBFoulsTV.setText(String.valueOf(fouls));
-        //scoreView = (TextView) findViewById(R.id.number_of_red_cards_b);
         TeamBRedCardsTV.setText(String.valueOf(cards));
     }
 
-    public void goalTeamB(View view){
-        scoreB+=1;
-        displayForTeamB(scoreB,foulB,redCardB);
+    public void goalTeamB(View view) {
+        scoreB += 1;
+        displayForTeamB(scoreB, foulB, redCardB);
     }
 
-    public void foulTeamB(View view){
-        foulB+=1;
-        displayForTeamB(scoreB,foulB,redCardB);
+    public void foulTeamB(View view) {
+        foulB += 1;
+        displayForTeamB(scoreB, foulB, redCardB);
     }
 
-    public void redCardTeamB(View view){
-        if (redCardB < 5 ){
+    public void redCardTeamB(View view) {
+        if (redCardB < 5) {
             redCardB += 1;
-            foulB += 1;   }
+            foulB += 1;
+        }
         displayForTeamB(scoreB, foulB, redCardB);
 
     }
 
 
     /**
-     *
      * resets everything back to default
      */
-    public void reset(View view){
+    public void reset(View view) {
         scoreA = 0;
         foulA = 0;
         redCardA = 0;
